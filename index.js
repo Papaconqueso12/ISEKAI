@@ -17,11 +17,18 @@ client.once("ready", () => {
 });
 
 client.on("messageCreate", (message) => {
-    if (message.content.toLowerCase() === "!hola") {
+    if (message.author.bot) return; // Ignorar mensajes de otros bots
+
+    const msg = message.content.toLowerCase();
+
+    if (msg === "!hola") {
         message.reply("¡Hola, Diego! 😊");
+    }
+
+    if (msg === "!info") {
+        message.reply("🔎 Soy un bot hecho con Node.js usando discord.js. ¡Estoy aquí para ayudarte!");
     }
 });
 
 // Usa el token desde el archivo .env
 client.login(process.env.DISCORD_TOKEN);
-
